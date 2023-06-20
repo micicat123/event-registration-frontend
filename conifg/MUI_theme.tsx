@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { Poppins } from "next/font/google";
 
 const MUITheme = createTheme({
   breakpoints: {
@@ -59,6 +60,11 @@ const MUITheme = createTheme({
       fontSize: "16px",
       fontWeight: 400,
       lineHeight: "24px",
+    },
+    h5: {
+      fontSize: "20px",
+      fontWeight: 500,
+      lineHeight: "30px",
     },
     body1: {
       fontSize: "14px",

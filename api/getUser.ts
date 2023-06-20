@@ -1,7 +1,7 @@
 import axios from "../conifg/axios.config";
 import Cookies from "js-cookie";
 
-export class UserStore {
+export class GetUserStore {
   isError: boolean = false;
 
   getUser = () => {
