@@ -66,6 +66,12 @@ const MUITheme = createTheme({
       fontWeight: 500,
       lineHeight: "30px",
     },
+    h6: {
+      fontWeight: "500",
+      fontSize: "16px",
+      lineHeight: "24px",
+      letterSpacing: "-2%",
+    },
     body1: {
       fontSize: "14px",
       fontWeight: 300,

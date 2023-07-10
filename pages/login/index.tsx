@@ -16,6 +16,7 @@ import { CustomTextInput } from "../../conifg/MUI_styled_components";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { UserLoginLogoutStore } from "../../api/loginLogoutUser";
+import Footer from "../../components/footer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -171,6 +172,7 @@ export default function Login() {
             </Box>
           </form>
         </Box>
+        <Footer />
       </Box>
     </Layout>
   );

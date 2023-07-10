@@ -1,6 +1,5 @@
-import { Box, Hidden, ThemeProvider, Typography } from "@mui/material";
+import { Box, Hidden, Typography } from "@mui/material";
 import React from "react";
-import MUITheme from "../conifg/MUI_theme";
 
 export default function Footer() {
   return (
@@ -16,7 +15,8 @@ export default function Footer() {
         position: "relative",
         bottom: 0,
         boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.15)",
-        px: 5,
+        px: 10,
+        backgroundColor: "white",
       }}
     >
       <Hidden smDown>

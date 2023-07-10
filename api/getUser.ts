@@ -13,9 +13,9 @@ export class GetUserStore {
     }
   };
 
-  getUserPicture = (imageKey: string) => {
+  getUserPicture = () => {
     try {
-      return getUserPicture(imageKey);
+      return getUserPicture();
     } catch (e) {
       this.isError = true;
       return null;
@@ -33,7 +33,7 @@ const getUser = async () => {
   }
 };
 
-const getUserPicture = async (imageKey: string) => {
+const getUserPicture = async () => {
   const token = Cookies.get("jwt");
   if (token) {
     const response = await axios.get("/upload/profile_pictures", {

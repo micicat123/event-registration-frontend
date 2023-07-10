@@ -40,9 +40,7 @@ export default function Nav() {
         setUserDisplayName(userData.user.displayName);
 
         try {
-          const userImage: any = await userStore.getUserPicture(
-            userData.user.customClaims.photoKey
-          );
+          const userImage: any = await userStore.getUserPicture();
           setUserPhoto(userImage);
         } catch (err) {}
       }
@@ -58,7 +56,7 @@ export default function Nav() {
           backgroundColor: "transparent",
           boxShadow: "none",
           position: "absolute",
-          px: 5,
+          px: 10,
         }}
       >
         <Container disableGutters maxWidth="xl">

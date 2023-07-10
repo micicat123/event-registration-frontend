@@ -23,6 +23,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { CustomTextInput } from "../../conifg/MUI_styled_components";
 import { UserRegisterStore } from "../../api/registerUser";
 import { useRouter } from "next/router";
+import Footer from "../../components/footer";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -317,6 +318,7 @@ export default function Register() {
           </form>
         </Box>
       </Box>
+      <Footer />
     </Layout>
   );
 }
