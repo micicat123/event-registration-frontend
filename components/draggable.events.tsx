@@ -9,10 +9,17 @@ import CircleIcon from "@mui/icons-material/Circle";
 
 export default function DraggableEvents({ events }: { events: any[] }) {
   const [images, setImages] = useState<any[]>([]);
-  const boundsValue = events.length >= 4 ? 200 + (events.length - 4) * 200 : 0;
+  const [boundValue, setBoundValue] = useState<number>(0);
+
+  const bounds = [
+    0, 0, 0, 200, 275, 560, 1100, 1500, 1860, 2280, 2680, 3500, 3900, 4300,
+    4750, 4750, 4750,
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
+      setBoundValue(bounds[events.length - 1]);
+
       const getEventsStore = new GetEventsStore();
       const fetchedImages = [];
       for (const event of events) {
@@ -29,16 +36,17 @@ export default function DraggableEvents({ events }: { events: any[] }) {
     return <></>;
   }
 
+  console.log(boundValue);
   return (
     <Box sx={{ mt: 22, mb: 2, overflow: "hidden" }}>
       <Draggable
         axis="x"
         bounds={{
-          left: -boundsValue,
-          right: boundsValue,
+          left: -boundValue,
+          right: 10,
         }}
       >
-        <FlexBox gap={2} sx={{ width: "100%" }}>
+        <Box gap={2} sx={{ display: "flex", width: "100%" }}>
           {events.map((event, index) => (
             <Box
               key={event.id}
@@ -88,7 +96,7 @@ export default function DraggableEvents({ events }: { events: any[] }) {
               </Box>
             </Box>
           ))}
-        </FlexBox>
+        </Box>
       </Draggable>
       <FlexBox sx={{ mt: 2 }} gap={1}>
         <CircleIcon color="primary" sx={{ fontSize: "8px" }} />

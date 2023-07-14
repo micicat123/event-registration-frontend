@@ -19,10 +19,17 @@ export default function Searchbar() {
       location,
       date
     );
-    router.push({
-      pathname: "/search",
-      query: { events: JSON.stringify(events) },
-    });
+    if (router.pathname === "/search") {
+      router.replace({
+        pathname: "/search",
+        query: { events: JSON.stringify(events) },
+      });
+    } else {
+      router.push({
+        pathname: "/search",
+        query: { events: JSON.stringify(events) },
+      });
+    }
   };
 
   return (

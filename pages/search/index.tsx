@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DraggableEvents from "../../components/draggable.events";
 import UpcomingEventsBig from "../../components/upcomingEvents-big";
+import Footer from "../../components/footer";
 
 export default function Search(props: any) {
   const [events, setEvents] = useState<any[]>([]);
@@ -14,7 +15,7 @@ export default function Search(props: any) {
   useEffect(() => {
     const events = JSON.parse(router.query.events);
     setEvents(events);
-  }, []);
+  }, [router.query]);
 
   return (
     <Layout>
@@ -30,7 +31,7 @@ export default function Search(props: any) {
         draggable={false}
       />
       <Nav />
-      <Box sx={{ pl: 10, pr: 19, pt: 20 }}>
+      <Box sx={{ px: 10, pt: 20 }}>
         <Typography color="textPrimary" variant="h6">
           SEARCH FOR EVENTS
         </Typography>
@@ -50,6 +51,7 @@ export default function Search(props: any) {
         <DraggableEvents events={events} />
         <UpcomingEventsBig />
       </Box>
+      <Footer />
     </Layout>
   );
 }
