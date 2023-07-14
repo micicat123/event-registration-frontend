@@ -17,6 +17,14 @@ export class GetEventsStore {
       return null;
     }
   };
+
+  getUpcomingEvents = (lastDate: string) => {
+    try {
+      return getUpcomingEvents(lastDate);
+    } catch (e) {
+      return null;
+    }
+  };
 }
 
 const getSearchedEvents = async (date: string, location: string) => {
@@ -29,4 +37,14 @@ const getEventPicture = async (id: string) => {
     responseType: "blob",
   });
   return URL.createObjectURL(response.data);
+};
+
+const getUpcomingEvents = async (lastDate: string) => {
+  const token = Cookies.get("jwt");
+  if (token) {
+    const { data } = await axios.get(`/event/${lastDate}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  }
 };

@@ -78,9 +78,9 @@ const MUITheme = createTheme({
       lineHeight: "16px",
     },
     body2: {
-      fontSize: "14px",
+      fontSize: "18px",
       fontWeight: 500,
-      lineHeight: "16px",
+      lineHeight: "27px",
     },
   },
 });

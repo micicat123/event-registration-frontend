@@ -5,6 +5,7 @@ import Searchbar from "../../components/searchbar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DraggableEvents from "../../components/draggable.events";
+import UpcomingEventsBig from "../../components/upcomingEvents-big";
 
 export default function Search(props: any) {
   const [events, setEvents] = useState<any[]>([]);
@@ -47,6 +48,7 @@ export default function Search(props: any) {
         </Typography>
         <Searchbar />
         <DraggableEvents events={events} />
+        <UpcomingEventsBig />
       </Box>
     </Layout>
   );
