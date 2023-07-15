@@ -6,6 +6,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
 import Draggable from "react-draggable";
 import CircleIcon from "@mui/icons-material/Circle";
+import { format } from "date-fns";
 
 export default function DraggableEvents({ events }: { events: any[] }) {
   const [images, setImages] = useState<any[]>([]);
@@ -70,7 +71,7 @@ export default function DraggableEvents({ events }: { events: any[] }) {
                   {event.eventName}
                 </Typography>
                 <Typography color="textPrimary" variant="body1">
-                  {event.date}, {event.hour}
+                  {format(new Date(event.date), "d.M.yyyy")}, {event.hour}
                 </Typography>
 
                 <Box
