@@ -7,9 +7,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import Draggable from "react-draggable";
 import CircleIcon from "@mui/icons-material/Circle";
 import { format } from "date-fns";
+import { useRouter } from "next/router";
 
 export default function DraggableEvents({ events }: { events: any[] }) {
+  const router = useRouter();
   const [images, setImages] = useState<any[]>([]);
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [clickStartTime, setClickStartTime] = useState<number | null>(null);
   const [boundValue, setBoundValue] = useState<number>(0);
 
   const bounds = [
@@ -33,11 +37,21 @@ export default function DraggableEvents({ events }: { events: any[] }) {
     fetchData();
   }, [events]);
 
+  const handleMouseUp = (event: any) => {
+    if (clickStartTime && Date.now() - clickStartTime < 100) {
+      router.push({
+        pathname: "/event",
+        query: { events: JSON.stringify(event) },
+      });
+    }
+
+    setClickStartTime(null);
+  };
+
   if (events.length < 0 || images.length < 0) {
     return <></>;
   }
 
-  console.log(boundValue);
   return (
     <Box sx={{ mt: 22, mb: 2, overflow: "hidden" }}>
       <Draggable
@@ -47,25 +61,50 @@ export default function DraggableEvents({ events }: { events: any[] }) {
           right: 10,
         }}
       >
-        <Box gap={2} sx={{ display: "flex", width: "100%" }}>
+        <Box gap={3} sx={{ display: "flex", width: "100%" }}>
           {events.map((event, index) => (
             <Box
               key={event.id}
               sx={{
                 boxShadow: "0px 2px 8px 0px rgba(0, 0, 0, 0.15)",
                 borderRadius: "0.5rem",
+                ":hover": {
+                  cursor: "pointer",
+                },
               }}
+              onMouseDown={() => setClickStartTime(Date.now())}
+              onMouseUp={() => handleMouseUp(event)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(-1)}
             >
+              <Box
+                sx={{
+                  width: "387px",
+                  height: "247px",
+                  borderRadius: "8px",
+                  position: "absolute",
+                  transition: "background 0.3s",
+                  zIndex: 1,
+                  background:
+                    hoveredIndex === index
+                      ? "linear-gradient(0deg, rgba(47, 60, 126, 0.50) 0%, rgba(47, 60, 126, 0.50) 100%)"
+                      : undefined,
+                }}
+              />
               <Box
                 component="img"
                 sx={{
                   width: "387px",
                   height: "247px",
                   borderRadius: "8px",
+                  transition: "filter 0.3s",
+                  zIndex: -1,
+                  filter: hoveredIndex === index ? "blur(2px)" : undefined,
                 }}
                 src={images[index]}
                 draggable={false}
               />
+
               <Box sx={{ p: 1 }}>
                 <Typography color="primary" variant="h3">
                   {event.eventName}

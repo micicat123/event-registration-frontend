@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { GetEventsStore } from "../api/getEvents";
 import { format, parseISO } from "date-fns";
 import { FlexBox } from "../conifg/MUI_styled_components";
+import { useRouter } from "next/router";
 
 export default function UpcomingEventsBig() {
+  const router: any = useRouter();
   const [lastDate, setLastDate] = useState<string>("0");
   const [events, setEvents] = useState<any[]>([]);
   const [loadMore, setLoadmore] = useState<boolean>(true);
@@ -24,6 +26,13 @@ export default function UpcomingEventsBig() {
     } else {
       setLoadmore(false);
     }
+  };
+
+  const openEventPage = (event: any) => {
+    router.push({
+      pathname: "/event",
+      query: { events: JSON.stringify(event) },
+    });
   };
 
   return (
@@ -82,6 +91,7 @@ export default function UpcomingEventsBig() {
                     width: "180px",
                     mr: 2,
                   }}
+                  onClick={() => openEventPage(event)}
                 >
                   Check
                 </Button>
