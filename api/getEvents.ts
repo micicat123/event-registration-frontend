@@ -46,5 +46,7 @@ const getUpcomingEvents = async (lastDate: string) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     return data;
+  } else {
+    return null;
   }
 };

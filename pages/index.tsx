@@ -2,11 +2,9 @@ import React from "react";
 import Layout from "../components/layout";
 import Nav from "../components/nav";
 import { Box, Typography } from "@mui/material";
-import { FlexBox } from "../conifg/MUI_styled_components";
 import MUITheme from "../conifg/MUI_theme";
 import Searchbar from "../components/searchbar";
 import Footer from "../components/footer";
-import { Slide } from "react-slideshow-image";
 import Draggable from "react-draggable";
 
 export default function Page() {

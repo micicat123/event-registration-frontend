@@ -2,13 +2,10 @@ import axios from "../conifg/axios.config";
 import Cookies from "js-cookie";
 
 export class GetUserStore {
-  isError: boolean = false;
-
   getUser = () => {
     try {
       return getUser();
     } catch (e) {
-      this.isError = true;
       return null;
     }
   };
@@ -17,7 +14,14 @@ export class GetUserStore {
     try {
       return getUserPicture();
     } catch (e) {
-      this.isError = true;
+      return null;
+    }
+  };
+
+  getUserRegistrations = () => {
+    try {
+      return getUserRegistrations();
+    } catch (e) {
       return null;
     }
   };
@@ -30,6 +34,8 @@ const getUser = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
     return data;
+  } else {
+    return null;
   }
 };
 
@@ -43,5 +49,21 @@ const getUserPicture = async () => {
       },
     });
     return URL.createObjectURL(response.data);
+  } else {
+    return null;
+  }
+};
+
+const getUserRegistrations = async () => {
+  const token = Cookies.get("jwt");
+  if (token) {
+    const response = await axios.get("/registration", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } else {
+    return null;
   }
 };

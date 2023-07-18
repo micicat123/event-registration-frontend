@@ -1,15 +1,30 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Footer from "../../components/footer";
 import { GetEventsStore } from "../../api/getEvents";
+import { format } from "date-fns";
+import MUITheme from "../../conifg/MUI_theme";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PersonIcon from "@mui/icons-material/Person";
+import { FlexBox } from "../../conifg/MUI_styled_components";
+import { GetUserStore } from "../../api/getUser";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
+import { UpdateRegistrationsStore } from "../../api/updateRegistrations";
+import Cookies from "js-cookie";
 
-export default function Search(props: any) {
-  const [event, setEvent] = useState<any[]>([]);
+export default function EventPage(props: any) {
+  const [event, setEvent] = useState<any>();
   const [image, setImage] = useState<any>();
+  const [registrationId, setRegistrationId] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [buttonIsHovered, setButtonIsHovered] = useState(false);
   const router: any = useRouter();
+  const registrationStore = new UpdateRegistrationsStore();
 
   useEffect(() => {
     const event = JSON.parse(router.query.events);
@@ -19,20 +34,211 @@ export default function Search(props: any) {
       const getEventsStore = new GetEventsStore();
       const image = await getEventsStore.getEventPicture(event.id);
       setImage(image);
+
+      const userStore = new GetUserStore();
+      try {
+        const userRegistrations = await userStore.getUserRegistrations();
+        console.log(userRegistrations);
+        for (const registration of userRegistrations) {
+          if (registration.eventId === event.id) {
+            setIsRegistered(true);
+            setRegistrationId(registration.registrationId);
+          }
+        }
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.log("user is not logged in");
+      }
     };
 
     fetchData();
-  }, [router.query]);
+  }, []);
 
+  const addRegistration = async () => {
+    await registrationStore.addRegistration(event.id);
+    setIsRegistered(true);
+  };
+
+  const removeRegistration = async () => {
+    await registrationStore.removeRegistration(registrationId);
+    setIsRegistered(false);
+  };
+
+  if (!event) {
+    return <></>;
+  }
   return (
     <Layout>
-      <Nav />
-      <Box sx={{ px: 10, pt: 20 }}>
-        <Typography color="textPrimary" variant="h6">
-          SEARCH FOR EVENTS
-        </Typography>
+      <Box
+        component="img"
+        sx={{
+          maxWidth: "50%",
+          borderTopLeftRadius: "8px",
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          transition: "opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+          "&:hover": {
+            opacity: 0.9,
+            boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
+          },
+        }}
+        src={image}
+      />
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Nav />
+        <Box
+          sx={{
+            width: "81.5%",
+            backgroundColor: MUITheme.palette.secondary.main,
+            pt: 20,
+            px: 10,
+          }}
+        >
+          <Box sx={{ width: "50%" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography
+                color="textPrimary"
+                variant="body1"
+                sx={{ fontWeight: "500" }}
+              >
+                {format(new Date(event.date), "d.M.yyyy")}
+              </Typography>
+              <Typography
+                color="textPrimary"
+                variant="body1"
+                sx={{ fontWeight: "500" }}
+              >
+                {event.hour}
+              </Typography>
+            </Box>
+
+            <Typography
+              color="primary"
+              variant="h1"
+              sx={{ lineHeight: "64px", mt: "24px", mb: "20px" }}
+            >
+              {event.eventName}
+            </Typography>
+
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <FlexBox>
+                <LocationOnIcon color="primary" sx={{ mr: 2 }} />
+                <Typography
+                  color="textPrimary"
+                  variant="body1"
+                  sx={{ fontWeight: "500" }}
+                >
+                  {event.location}
+                </Typography>
+              </FlexBox>
+              <FlexBox>
+                <PersonIcon color="primary" sx={{ mr: 2 }} />
+                <Typography
+                  color="textPrimary"
+                  variant="body1"
+                  sx={{ fontWeight: "500" }}
+                >
+                  {event.maxUsers}
+                </Typography>
+              </FlexBox>
+            </Box>
+
+            <Typography
+              color="textPrimary"
+              variant="h6"
+              sx={{ mt: "57px", mb: "11px" }}
+            >
+              EVENT DESCRIPTION:
+            </Typography>
+            <Typography color="textPrimary" variant="body1">
+              {event.description}
+            </Typography>
+
+            {isLoggedIn ? (
+              <>
+                {isRegistered ? (
+                  <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        borderRadius: "16px",
+                        height: "51px",
+                        width: "56px",
+                        mt: "46px",
+                        mb: "95px",
+                      }}
+                      onClick={() => removeRegistration()}
+                      onMouseEnter={() => setButtonIsHovered(true)}
+                      onMouseLeave={() => setButtonIsHovered(false)}
+                    >
+                      {buttonIsHovered ? <CloseIcon /> : <DoneIcon />}
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        borderRadius: "16px",
+                        height: "51px",
+                        width: "90px",
+                        mt: "46px",
+                        mb: "95px",
+                      }}
+                      onClick={() => addRegistration()}
+                    >
+                      Book
+                    </Button>
+                  </Box>
+                )}
+              </>
+            ) : (
+              <>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      borderRadius: "16px",
+                      height: "40px",
+                      width: "137px",
+                      mt: "46px",
+                      mb: "16px",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Typography
+                    color="textPrimary"
+                    variant="body1"
+                    sx={{ mb: "95px" }}
+                  >
+                    To attend the event, you need to log in.
+                  </Typography>
+                </Box>
+              </>
+            )}
+          </Box>
+        </Box>
+
+        <Box
+          width="18.5%"
+          sx={{
+            backgroundImage: `url("pictures/background-logo.png")`,
+          }}
+        />
       </Box>
-      <Footer />
+      <Box sx={{ width: "50%" }}>
+        <Footer />
+      </Box>
     </Layout>
   );
 }

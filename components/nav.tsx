@@ -35,15 +35,17 @@ export default function Nav() {
   useEffect(() => {
     (async () => {
       const userStore = new GetUserStore();
-      const userData = await userStore.getUser();
-      if (userData) {
-        setUserDisplayName(userData.user.displayName);
+      try {
+        const userData = await userStore.getUser();
+        if (userData) {
+          setUserDisplayName(userData.user.displayName);
 
-        try {
-          const userImage: any = await userStore.getUserPicture();
-          setUserPhoto(userImage);
-        } catch (err) {}
-      }
+          try {
+            const userImage: any = await userStore.getUserPicture();
+            setUserPhoto(userImage);
+          } catch (err) {}
+        }
+      } catch (err) {}
     })();
   }, []);
 
@@ -227,7 +229,12 @@ export default function Nav() {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "transparent", boxShadow: "none" }}
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        position: "absolute",
+        px: 10,
+      }}
     >
       <Container disableGutters maxWidth="xl">
         <Toolbar disableGutters>

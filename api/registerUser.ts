@@ -43,5 +43,7 @@ const postUserPicture = async (formData: any, uid: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
+  } else {
+    return null;
   }
 };
