@@ -48,8 +48,35 @@ export default function DraggableEvents({ events }: { events: any[] }) {
     setClickStartTime(null);
   };
 
-  if (events.length < 0 || images.length < 0) {
-    return <></>;
+  if (events.length < 1 || images.length < 1) {
+    return (
+      <>
+        <Typography
+          color="primary"
+          variant="h1"
+          sx={{
+            fontSize: "35px",
+            textAlign: "center",
+            mt: "100px",
+            transition: "transform 0.3s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.1)",
+            },
+          }}
+        >
+          There are no events matching your search criteria.
+        </Typography>
+        <Typography
+          color="textPrimary"
+          variant="h5"
+          sx={{
+            textAlign: "center",
+          }}
+        >
+          Please try a different search.
+        </Typography>
+      </>
+    );
   }
 
   return (

@@ -14,7 +14,6 @@ export default function Page() {
         <Nav />
         <Box sx={{ display: "flex" }}>
           <Box
-            width="81.5%"
             sx={{
               backgroundColor: MUITheme.palette.secondary.main,
               py: "8rem",
@@ -77,16 +76,24 @@ export default function Page() {
 
           <Box
             sx={{
-              width: "950px",
+              width: "52.5%",
               overflow: "hidden",
+              position: "absolute",
+              bottom: 0,
+              left: "47.5%",
               mt: "8rem",
-              ml: "-45rem",
             }}
           >
-            <Draggable axis="x">
+            <Draggable
+              axis="x"
+              bounds={{
+                left: -842,
+                right: 0,
+              }}
+            >
               <Box
                 sx={{
-                  height: "694px",
+                  height: "625px",
                   gap: 2,
                   display: "flex",
                 }}
@@ -143,9 +150,9 @@ export default function Page() {
             </Draggable>
           </Box>
         </Box>
-        <Box sx={{ maxWidth: "43rem", mt: "-95px" }}>
-          <Footer />
-        </Box>
+      </Box>
+      <Box sx={{ width: "47.5%", mt: "-85px" }}>
+        <Footer />
       </Box>
     </Layout>
   );
