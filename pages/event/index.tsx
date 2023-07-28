@@ -14,7 +14,6 @@ import { GetUserStore } from "../../api/getUser";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import { UpdateRegistrationsStore } from "../../api/updateRegistrations";
-import Cookies from "js-cookie";
 
 export default function EventPage(props: any) {
   const [event, setEvent] = useState<any>();
@@ -27,20 +26,21 @@ export default function EventPage(props: any) {
   const registrationStore = new UpdateRegistrationsStore();
 
   useEffect(() => {
-    const event = JSON.parse(router.query.events);
-    setEvent(event);
+    const fetchedEvent = JSON.parse(router.query.events);
+    setEvent(fetchedEvent);
 
     const fetchData = async () => {
       const getEventsStore = new GetEventsStore();
-      const image = await getEventsStore.getEventPicture(event.id);
-      setImage(image);
+      if (fetchedEvent) {
+        const image = await getEventsStore.getEventPicture(fetchedEvent.id);
+        setImage(image);
+      }
 
       const userStore = new GetUserStore();
       try {
         const userRegistrations = await userStore.getUserRegistrations();
-        console.log(userRegistrations);
         for (const registration of userRegistrations) {
-          if (registration.eventId === event.id) {
+          if (registration.eventId === fetchedEvent.id) {
             setIsRegistered(true);
             setRegistrationId(registration.registrationId);
           }
@@ -64,6 +64,7 @@ export default function EventPage(props: any) {
     setIsRegistered(false);
   };
 
+  //console.log(image);
   if (!event) {
     return <></>;
   }

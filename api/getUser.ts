@@ -28,7 +28,7 @@ export class GetUserStore {
 
   getUserPastRegistrations = () => {
     try {
-      return getUserRegistrations();
+      return getUserPastRegistrations();
     } catch (e) {
       return null;
     }

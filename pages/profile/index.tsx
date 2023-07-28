@@ -5,6 +5,9 @@ import Nav from "../../components/nav";
 import { useEffect, useState } from "react";
 import { GetUserStore } from "../../api/getUser";
 import router, { useRouter } from "next/router";
+import UpcomingEventsSmall from "../../components/upcomingEvents-small";
+import RecentEvents from "../../components/recentEvents";
+import Footer from "../../components/footer";
 
 export default function Profile() {
   const [userDisplayName, setUserDisplayName] = useState<string>("");
@@ -15,12 +18,10 @@ export default function Profile() {
       const userStore = new GetUserStore();
       try {
         const userData = await userStore.getUser();
-        if (userData) {
-          setUserDisplayName(userData.user.displayName);
-        } else {
-          router.push("/");
-        }
-      } catch (err) {}
+        setUserDisplayName(userData.user.displayName);
+      } catch (err) {
+        router.push("/");
+      }
     })();
   }, []);
 
@@ -42,22 +43,30 @@ export default function Profile() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
-            height: "375px",
+            height: "calc(100vh - 491px)",
           }}
         />
-        <Box sx={{ position: "absolute", left: 50, right: 50, top: 175 }}>
+        <Box
+          sx={{ position: "absolute", left: 50, right: 50, top: 175, px: 4 }}
+        >
           <Typography
             color="primary"
             variant="h1"
             sx={{
               lineHeight: "64px",
               textAlign: "center",
+              mb: "54px",
             }}
           >
             {userDisplayName}
           </Typography>
+          <Box sx={{ display: "flex", gap: 3 }}>
+            <UpcomingEventsSmall />
+            <RecentEvents />
+          </Box>
         </Box>
       </Box>
+      <Footer />
     </Layout>
   );
 }
