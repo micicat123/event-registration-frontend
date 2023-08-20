@@ -20,7 +20,10 @@ import {
 import MUITheme from "../../conifg/MUI_theme";
 import Nav from "../../components/nav";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CustomTextInput } from "../../conifg/MUI_styled_components";
+import {
+  CustomButton,
+  CustomTextInput,
+} from "../../conifg/MUI_styled_components";
 import { UserRegisterStore } from "../../api/registerUser";
 import { useRouter } from "next/router";
 import Footer from "../../components/footer";
@@ -100,9 +103,9 @@ export default function Register() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => router.push("/login")} autoFocus>
+            <CustomButton onClick={() => router.push("/login")} autoFocus>
               Ok
-            </Button>
+            </CustomButton>
           </DialogActions>
         </Dialog>
       </div>
@@ -280,7 +283,7 @@ export default function Register() {
               </FormControl>
               <br />
 
-              <Button
+              <CustomButton
                 variant="contained"
                 type="submit"
                 sx={{
@@ -290,7 +293,7 @@ export default function Register() {
                 }}
               >
                 Sign up
-              </Button>
+              </CustomButton>
               <br />
 
               <Box

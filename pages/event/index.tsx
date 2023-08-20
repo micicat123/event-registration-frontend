@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import MUITheme from "../../conifg/MUI_theme";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
-import { FlexBox } from "../../conifg/MUI_styled_components";
+import { CustomButton, FlexBox } from "../../conifg/MUI_styled_components";
 import { GetUserStore } from "../../api/getUser";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
@@ -166,7 +166,7 @@ export default function EventPage(props: any) {
               <>
                 {isRegistered ? (
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Button
+                    <CustomButton
                       variant="contained"
                       sx={{
                         borderRadius: "16px",
@@ -180,11 +180,11 @@ export default function EventPage(props: any) {
                       onMouseLeave={() => setButtonIsHovered(false)}
                     >
                       {buttonIsHovered ? <CloseIcon /> : <DoneIcon />}
-                    </Button>
+                    </CustomButton>
                   </Box>
                 ) : (
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Button
+                    <CustomButton
                       variant="contained"
                       sx={{
                         borderRadius: "16px",
@@ -196,14 +196,14 @@ export default function EventPage(props: any) {
                       onClick={() => addRegistration()}
                     >
                       Book
-                    </Button>
+                    </CustomButton>
                   </Box>
                 )}
               </>
             ) : (
               <>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <Button
+                  <CustomButton
                     variant="contained"
                     sx={{
                       borderRadius: "16px",
@@ -214,7 +214,7 @@ export default function EventPage(props: any) {
                     }}
                   >
                     Login
-                  </Button>
+                  </CustomButton>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <Typography

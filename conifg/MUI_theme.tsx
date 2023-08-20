@@ -11,23 +11,6 @@ const MUITheme = createTheme({
       xl: 1920,
     },
   },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            color: "white",
-            backgroundColor: "#2D2D2D",
-          },
-          textTransform: "none",
-          fontFamily: "Raleway, sans-serif",
-          fontWeight: "400",
-          fontSize: "16px",
-          lineHeight: "18.78px",
-        },
-      },
-    },
-  },
   palette: {
     primary: {
       main: "#2F3C7E",

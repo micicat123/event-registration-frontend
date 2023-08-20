@@ -20,50 +20,52 @@ export default function Page() {
               pl: 10,
             }}
           >
-            <Typography color="textPrimary" variant="h6">
-              FIND THE BEST EVENTS
-            </Typography>
-            <Typography
-              color="primary"
-              variant="h1"
-              sx={{
-                lineHeight: "64px",
-                maxWidth: "508px",
-                mt: "18px",
-                mb: "35px",
-              }}
-            >
-              Are you looking for your next event?
-            </Typography>
-            <Typography
-              color="textPrimary"
-              variant="body1"
-              sx={{
-                maxWidth: "488px",
-              }}
-            >
-              Aliquet sed iaculis posuere egestas integer. Lectus morbi lectus
-              consequat, massa etiam a sed in. Sollicitudin id dignissim
-              tincidunt ipsum vel morbi diam ultricies fermentum.
-            </Typography>
+            <Box sx={{ width: "75%" }}>
+              <Typography color="textPrimary" variant="h6">
+                FIND THE BEST EVENTS
+              </Typography>
+              <Typography
+                color="primary"
+                variant="h1"
+                sx={{
+                  lineHeight: "64px",
+                  maxWidth: "508px",
+                  mt: "18px",
+                  mb: "35px",
+                }}
+              >
+                Are you looking for your next event?
+              </Typography>
+              <Typography
+                color="textPrimary"
+                variant="body1"
+                sx={{
+                  maxWidth: "488px",
+                }}
+              >
+                Aliquet sed iaculis posuere egestas integer. Lectus morbi lectus
+                consequat, massa etiam a sed in. Sollicitudin id dignissim
+                tincidunt ipsum vel morbi diam ultricies fermentum.
+              </Typography>
 
-            <Typography
-              color="textPrimary"
-              variant="h6"
-              sx={{ mt: "59px", mb: "5px" }}
-            >
-              FIND YOUR NEXT EVENT
-            </Typography>
-            <Typography
-              color="textPrimary"
-              variant="body1"
-              sx={{
-                mb: "20px",
-              }}
-            >
-              Sollicitudin id dignissim tincidunt ipsum vel morbi diam ultricies
-              fermentum.
-            </Typography>
+              <Typography
+                color="textPrimary"
+                variant="h6"
+                sx={{ mt: "59px", mb: "5px" }}
+              >
+                FIND YOUR NEXT EVENT
+              </Typography>
+              <Typography
+                color="textPrimary"
+                variant="body1"
+                sx={{
+                  mb: "20px",
+                }}
+              >
+                Sollicitudin id dignissim tincidunt ipsum vel morbi diam
+                ultricies fermentum.
+              </Typography>
+            </Box>
             <Searchbar />
           </Box>
           <Box

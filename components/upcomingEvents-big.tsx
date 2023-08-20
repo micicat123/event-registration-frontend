@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetEventsStore } from "../api/getEvents";
 import { format, parseISO } from "date-fns";
-import { FlexBox } from "../conifg/MUI_styled_components";
+import { CustomButton, FlexBox } from "../conifg/MUI_styled_components";
 import { useRouter } from "next/router";
 
 export default function UpcomingEventsBig() {
@@ -18,7 +18,7 @@ export default function UpcomingEventsBig() {
 
   const handleLoadMore = async () => {
     const fetchedEvents = await getEventsStore.getUpcomingEvents(lastDate);
-    if (fetchedEvents.length > 0) {
+    if (fetchedEvents.length) {
       const lastEvent = fetchedEvents[fetchedEvents.length - 1];
       const { date } = lastEvent;
       setLastDate(date);
@@ -83,7 +83,7 @@ export default function UpcomingEventsBig() {
                 </Box>
               </Box>
               <Box>
-                <Button
+                <CustomButton
                   variant="contained"
                   sx={{
                     borderRadius: "16px",
@@ -94,14 +94,14 @@ export default function UpcomingEventsBig() {
                   onClick={() => openEventPage(event)}
                 >
                   Check
-                </Button>
+                </CustomButton>
               </Box>
             </Box>
           ))}
         </Box>
         {loadMore && (
           <FlexBox>
-            <Button
+            <CustomButton
               variant="contained"
               sx={{
                 borderRadius: "32px",
@@ -111,7 +111,7 @@ export default function UpcomingEventsBig() {
               onClick={handleLoadMore}
             >
               Load more
-            </Button>
+            </CustomButton>
           </FlexBox>
         )}
       </Box>

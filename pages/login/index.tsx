@@ -12,7 +12,10 @@ import {
 } from "@mui/material";
 import MUITheme from "../../conifg/MUI_theme";
 import Nav from "../../components/nav";
-import { CustomTextInput } from "../../conifg/MUI_styled_components";
+import {
+  CustomButton,
+  CustomTextInput,
+} from "../../conifg/MUI_styled_components";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { UserLoginLogoutStore } from "../../api/loginLogoutUser";
@@ -135,7 +138,7 @@ export default function Login() {
               </FormControl>
               <br />
 
-              <Button
+              <CustomButton
                 variant="contained"
                 type="submit"
                 sx={{
@@ -145,7 +148,7 @@ export default function Login() {
                 }}
               >
                 Login
-              </Button>
+              </CustomButton>
               <br />
 
               <Box

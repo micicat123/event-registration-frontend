@@ -33,6 +33,14 @@ export class GetUserStore {
       return null;
     }
   };
+
+  getUsersAddedEvents = () => {
+    try {
+      return getUsersAddedEvents();
+    } catch (e) {
+      return null;
+    }
+  };
 }
 
 const getUser = async () => {
@@ -80,6 +88,20 @@ const getUserPastRegistrations = async () => {
   const token = Cookies.get("jwt");
   if (token) {
     const response = await axios.get("/registration/past", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } else {
+    return null;
+  }
+};
+
+const getUsersAddedEvents = async () => {
+  const token = Cookies.get("jwt");
+  if (token) {
+    const response = await axios.get("/event/user", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

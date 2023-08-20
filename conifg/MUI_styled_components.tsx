@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const FlexBox = styled(Box)({
   display: "flex",
@@ -30,4 +30,16 @@ const CustomTextInput = styled(TextField)({
   },
 });
 
-export { FlexBox, CustomTextInput };
+const CustomButton = styled(Button)(({ theme }) => ({
+  textTransform: "none",
+  fontFamily: "Raleway, sans-serif",
+  fontWeight: "400",
+  fontSize: "16px",
+  lineHeight: "18.78px",
+  "&:hover": {
+    color: "white",
+    backgroundColor: "#2D2D2D",
+  },
+}));
+
+export { FlexBox, CustomTextInput, CustomButton };

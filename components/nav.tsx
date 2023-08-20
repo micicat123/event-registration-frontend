@@ -16,7 +16,7 @@ import MUITheme from "../conifg/MUI_theme";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CloseIcon from "@mui/icons-material/Close";
-import { FlexBox } from "../conifg/MUI_styled_components";
+import { CustomButton, FlexBox } from "../conifg/MUI_styled_components";
 import { GetUserStore } from "../api/getUser";
 
 export default function Nav() {
@@ -146,7 +146,7 @@ export default function Nav() {
                       },
                     }}
                   >
-                    <Button
+                    <CustomButton
                       variant="contained"
                       sx={{
                         borderRadius: "32px",
@@ -156,7 +156,7 @@ export default function Nav() {
                       onClick={handleCloseNavMenu}
                     >
                       Login
-                    </Button>
+                    </CustomButton>
                   </MenuItem>
                 </MenuList>
               </Menu>
@@ -206,7 +206,7 @@ export default function Nav() {
                 >
                   Login
                 </Typography>
-                <Button
+                <CustomButton
                   variant="contained"
                   sx={{
                     borderRadius: "64px",
@@ -216,7 +216,7 @@ export default function Nav() {
                   onClick={handleCloseNavMenu}
                 >
                   Sign up
-                </Button>
+                </CustomButton>
               </FlexBox>
             </Box>
           </Toolbar>

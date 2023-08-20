@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { FlexBox } from "../conifg/MUI_styled_components";
+import { CustomButton, FlexBox } from "../conifg/MUI_styled_components";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -76,7 +76,26 @@ export default function Searchbar() {
         </FlexBox>
         <Box sx={{ pl: 4 }}>
           <DatePicker
-            sx={{ width: "17.5rem" }}
+            sx={{
+              width: "17.5rem",
+              "& .MuiInputLabel-root": {
+                marginLeft: "15px",
+              },
+              "& .MuiInputBase-root": {
+                paddingLeft: "15px",
+              },
+              "& .MuiInputAdornment-positionEnd": {
+                marginRight: "15px",
+              },
+              "& .MuiInput-underline:before": {
+                borderBottomWidth: "0px",
+                marginLeft: "2.5%",
+                marginRight: "2.5%",
+              },
+              "& .MuiInput-underline:after": {
+                borderBottomWidth: "0px",
+              },
+            }}
             label="Pick a date"
             slotProps={{ textField: { size: "small" } }}
             slots={{
@@ -97,7 +116,7 @@ export default function Searchbar() {
           />
         </Box>
       </FlexBox>
-      <Button
+      <CustomButton
         variant="contained"
         sx={{
           borderRadius: "14px",
@@ -107,7 +126,7 @@ export default function Searchbar() {
         onClick={search}
       >
         Search
-      </Button>
+      </CustomButton>
     </Box>
   );
 }

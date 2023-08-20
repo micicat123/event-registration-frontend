@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
+import { CustomButton } from "../conifg/MUI_styled_components";
 
 interface CustomButtonProps {
   registration: {
@@ -30,7 +31,7 @@ const BookButton: React.FC<CustomButtonProps> = ({
   return (
     <>
       {unregisteredEvents.includes(registration.registrationId) ? (
-        <Button
+        <CustomButton
           variant="contained"
           sx={{
             borderRadius: "16px",
@@ -42,9 +43,9 @@ const BookButton: React.FC<CustomButtonProps> = ({
           }
         >
           Apply
-        </Button>
+        </CustomButton>
       ) : (
-        <Button
+        <CustomButton
           variant="contained"
           sx={{
             borderRadius: "16px",
@@ -56,7 +57,7 @@ const BookButton: React.FC<CustomButtonProps> = ({
           onMouseLeave={() => setButtonIsHovered(false)}
         >
           {buttonIsHovered ? <CloseIcon /> : <DoneIcon />}
-        </Button>
+        </CustomButton>
       )}
     </>
   );
