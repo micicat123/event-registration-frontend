@@ -1,4 +1,4 @@
-import { Box, Hidden, Typography } from "@mui/material";
+import { Box, Hidden, Link, Typography } from "@mui/material";
 import React from "react";
 
 export default function Footer() {
@@ -20,17 +20,21 @@ export default function Footer() {
     >
       <Hidden smDown>
         <Box>
-          <img src="/pictures/logo-big.png" alt="logo" className="logo" />
+          <Link href="/">
+            <img src="/pictures/logo-big.png" alt="logo" className="logo" />
+          </Link>
         </Box>
       </Hidden>
       <Hidden smUp>
         <Box>
-          <img
-            src="/pictures/logo-small.png"
-            alt="logo"
-            className="logo"
-            width={24}
-          />
+          <Link href="/">
+            <img
+              src="/pictures/logo-small.png"
+              alt="logo"
+              className="logo"
+              width={24}
+            />
+          </Link>
         </Box>
       </Hidden>
 

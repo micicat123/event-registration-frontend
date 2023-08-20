@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   IconButton,
+  Link,
   Menu,
   MenuItem,
   MenuList,
@@ -18,6 +19,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CloseIcon from "@mui/icons-material/Close";
 import { CustomButton, FlexBox } from "../conifg/MUI_styled_components";
 import { GetUserStore } from "../api/getUser";
+import { useRouter } from "next/router";
+import { UserLoginLogoutStore } from "../api/loginLogoutUser";
 
 export default function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -31,6 +34,7 @@ export default function Nav() {
   };
   const [userPhoto, setUserPhoto] = useState<string>("");
   const [userDisplayName, setUserDisplayName] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -49,6 +53,11 @@ export default function Nav() {
     })();
   }, []);
 
+  const logout = async () => {
+    const logoutStore = new UserLoginLogoutStore();
+    await logoutStore.logout();
+  };
+
   //user is not logged in
   if (userPhoto == "") {
     return (
@@ -63,9 +72,16 @@ export default function Nav() {
       >
         <Container disableGutters maxWidth="xl">
           <Toolbar disableGutters>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <img src="/pictures/logo-small.png" alt="logo" className="logo" />
-            </Box>
+            <Link href="/">
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <img
+                  src="/pictures/logo-small.png"
+                  alt="logo"
+                  className="logo"
+                />
+              </Box>
+            </Link>
+
             <Box
               sx={{
                 flexGrow: 1,
@@ -115,17 +131,31 @@ export default function Nav() {
                     />
                   </FlexBox>
                   <br />
+
+                  <Link href="/" sx={{ textDecoration: "none" }}>
+                    <MenuItem
+                      onClick={handleCloseNavMenu}
+                      sx={{ justifyContent: "space-between" }}
+                    >
+                      <Typography
+                        textAlign="center"
+                        color="primary"
+                        variant="h5"
+                      >
+                        Home
+                      </Typography>
+                      <ArrowForwardIosIcon color="primary" />
+                    </MenuItem>
+                  </Link>
+
                   <MenuItem
-                    onClick={handleCloseNavMenu}
-                    sx={{ justifyContent: "space-between" }}
-                  >
-                    <Typography textAlign="center" color="primary" variant="h5">
-                      Home
-                    </Typography>
-                    <ArrowForwardIosIcon color="primary" />
-                  </MenuItem>
-                  <MenuItem
-                    onClick={handleCloseNavMenu}
+                    onClick={() => {
+                      handleCloseNavMenu();
+                      router.push({
+                        pathname: "/search",
+                        query: { events: JSON.stringify("") },
+                      });
+                    }}
                     sx={{
                       justifyContent: "space-between",
                       mt: "8px",
@@ -137,27 +167,30 @@ export default function Nav() {
                     </Typography>
                     <ArrowForwardIosIcon color="primary" />
                   </MenuItem>
-                  <MenuItem
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      justifyContent: "center",
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                      },
-                    }}
-                  >
-                    <CustomButton
-                      variant="contained"
-                      sx={{
-                        borderRadius: "32px",
-                        height: "40px",
-                        width: "344px",
-                      }}
+
+                  <Link href="/login" sx={{ textDecoration: "none" }}>
+                    <MenuItem
                       onClick={handleCloseNavMenu}
+                      sx={{
+                        justifyContent: "center",
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                        },
+                      }}
                     >
-                      Login
-                    </CustomButton>
-                  </MenuItem>
+                      <CustomButton
+                        variant="contained"
+                        sx={{
+                          borderRadius: "32px",
+                          height: "40px",
+                          width: "344px",
+                        }}
+                        onClick={handleCloseNavMenu}
+                      >
+                        Login
+                      </CustomButton>
+                    </MenuItem>
+                  </Link>
                 </MenuList>
               </Menu>
             </Box>
@@ -166,57 +199,75 @@ export default function Nav() {
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              <img
-                src="/pictures/logo-small.png"
-                alt="logo"
-                className="logo"
-                height="42px"
-                width="40px"
-              />
+              <Link href="/">
+                <img
+                  src="/pictures/logo-small.png"
+                  alt="logo"
+                  className="logo"
+                  width="40px"
+                  height="42px"
+                />
+              </Link>
 
               <FlexBox sx={{ gap: 5 }}>
+                <Link href="/" sx={{ textDecoration: "none" }}>
+                  <Typography
+                    textAlign="center"
+                    color="textPrimary"
+                    variant="h4"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, display: "block" }}
+                  >
+                    Home
+                  </Typography>
+                </Link>
+
                 <Typography
                   textAlign="center"
                   color="textPrimary"
                   variant="h4"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, display: "block" }}
-                >
-                  Home
-                </Typography>
-                <Typography
-                  textAlign="center"
-                  color="textPrimary"
-                  variant="h4"
-                  onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    router.push({
+                      pathname: "/search",
+                      query: { events: JSON.stringify("") },
+                    });
+                  }}
                   sx={{ my: 2, display: "block" }}
                 >
                   Search
                 </Typography>
               </FlexBox>
+
               <FlexBox sx={{ gap: 5 }}>
-                <Typography
-                  textAlign="center"
-                  color="textPrimary"
-                  variant="h4"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, display: "block" }}
-                >
-                  Login
-                </Typography>
-                <CustomButton
-                  variant="contained"
-                  sx={{
-                    borderRadius: "64px",
-                    height: "45px",
-                    width: "122px",
-                  }}
-                  onClick={handleCloseNavMenu}
-                >
-                  Sign up
-                </CustomButton>
+                <Link href="/login" sx={{ textDecoration: "none" }}>
+                  <Typography
+                    textAlign="center"
+                    color="textPrimary"
+                    variant="h4"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, display: "block" }}
+                  >
+                    Login
+                  </Typography>
+                </Link>
+
+                <Link href="/register">
+                  <CustomButton
+                    variant="contained"
+                    sx={{
+                      borderRadius: "64px",
+                      height: "45px",
+                      width: "122px",
+                    }}
+                    onClick={handleCloseNavMenu}
+                  >
+                    Sign up
+                  </CustomButton>
+                </Link>
               </FlexBox>
             </Box>
           </Toolbar>
@@ -239,7 +290,9 @@ export default function Nav() {
       <Container disableGutters maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <img src="/pictures/logo-small.png" alt="logo" className="logo" />
+            <Link href="/">
+              <img src="/pictures/logo-small.png" alt="logo" className="logo" />
+            </Link>
           </Box>
           <Box
             sx={{
@@ -299,26 +352,40 @@ export default function Nav() {
                     mb: "38px",
                   }}
                 >
-                  <Avatar src={userPhoto} sx={{ width: 48, height: 48 }} />
-                  <Typography textAlign="center" color="primary" variant="h5">
-                    {userDisplayName}
-                  </Typography>
+                  <Link href="/profile">
+                    <Avatar src={userPhoto} sx={{ width: 48, height: 48 }} />
+                  </Link>
+                  <Link href="/profile" sx={{ textDecoration: "none" }}>
+                    <Typography textAlign="center" color="primary" variant="h5">
+                      {userDisplayName}
+                    </Typography>
+                  </Link>
                 </Box>
+
+                <Link href="/" sx={{ textDecoration: "none" }}>
+                  <MenuItem
+                    onClick={handleCloseNavMenu}
+                    sx={{ justifyContent: "space-between" }}
+                  >
+                    <Typography textAlign="center" color="primary" variant="h5">
+                      Home
+                    </Typography>
+                    <ArrowForwardIosIcon color="primary" />
+                  </MenuItem>
+                </Link>
+
                 <MenuItem
-                  onClick={handleCloseNavMenu}
-                  sx={{ justifyContent: "space-between" }}
-                >
-                  <Typography textAlign="center" color="primary" variant="h5">
-                    Home
-                  </Typography>
-                  <ArrowForwardIosIcon color="primary" />
-                </MenuItem>
-                <MenuItem
-                  onClick={handleCloseNavMenu}
                   sx={{
                     justifyContent: "space-between",
                     mt: "8px",
                     mb: "8px",
+                  }}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    router.push({
+                      pathname: "/search",
+                      query: { events: JSON.stringify("") },
+                    });
                   }}
                 >
                   <Typography textAlign="center" color="primary" variant="h5">
@@ -326,21 +393,28 @@ export default function Nav() {
                   </Typography>
                   <ArrowForwardIosIcon color="primary" />
                 </MenuItem>
+
+                <Link href="/manage-event" sx={{ textDecoration: "none" }}>
+                  <MenuItem
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      justifyContent: "space-between",
+                      mt: "8px",
+                      mb: "8px",
+                    }}
+                  >
+                    <Typography textAlign="center" color="primary" variant="h5">
+                      Event manager
+                    </Typography>
+                    <ArrowForwardIosIcon color="primary" />
+                  </MenuItem>
+                </Link>
+
                 <MenuItem
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    justifyContent: "space-between",
-                    mt: "8px",
-                    mb: "8px",
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    logout();
                   }}
-                >
-                  <Typography textAlign="center" color="primary" variant="h5">
-                    Event manager
-                  </Typography>
-                  <ArrowForwardIosIcon color="primary" />
-                </MenuItem>
-                <MenuItem
-                  onClick={handleCloseNavMenu}
                   sx={{
                     justifyContent: "space-between",
                     mt: "8px",
@@ -363,56 +437,77 @@ export default function Nav() {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <img
-              src="/pictures/logo-small.png"
-              alt="logo"
-              className="logo"
-              height="42px"
-              width="40px"
-            />
+            <Link href="/">
+              <img
+                src="/pictures/logo-small.png"
+                alt="logo"
+                className="logo"
+                width="40px"
+                height="42px"
+              />
+            </Link>
 
             <FlexBox sx={{ gap: 5 }}>
+              <Link href="/" sx={{ textDecoration: "none" }}>
+                <Typography
+                  textAlign="center"
+                  color="textPrimary"
+                  variant="h4"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, display: "block" }}
+                >
+                  Home
+                </Typography>
+              </Link>
+
               <Typography
                 textAlign="center"
                 color="textPrimary"
                 variant="h4"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, display: "block" }}
-              >
-                Home
-              </Typography>
-              <Typography
-                textAlign="center"
-                color="textPrimary"
-                variant="h4"
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  router.push({
+                    pathname: "/search",
+                    query: { events: JSON.stringify("") },
+                  });
+                }}
                 sx={{ my: 2, display: "block" }}
               >
                 Search
               </Typography>
-              <Typography
-                textAlign="center"
-                color="textPrimary"
-                variant="h4"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, display: "block" }}
-              >
-                Event manager
-              </Typography>
+
+              <Link href="/manage-event" sx={{ textDecoration: "none" }}>
+                <Typography
+                  textAlign="center"
+                  color="textPrimary"
+                  variant="h4"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, display: "block" }}
+                >
+                  Event manager
+                </Typography>
+              </Link>
             </FlexBox>
+
             <FlexBox sx={{ gap: 2 }}>
               <Typography
                 textAlign="center"
                 color="textPrimary"
                 variant="h4"
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  logout();
+                }}
                 sx={{ my: 2, display: "block" }}
               >
                 Logout
               </Typography>
-              <Avatar src={userPhoto} />
+              <Link href="/profile" sx={{ textDecoration: "none" }}>
+                <Avatar src={userPhoto} />
+              </Link>
             </FlexBox>
           </Box>
         </Toolbar>

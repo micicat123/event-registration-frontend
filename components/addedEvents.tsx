@@ -31,14 +31,18 @@ const AddedEvents: React.FC<AddedEventsProps> = ({
 
   return (
     <Box sx={{ pt: 10, flex: 1, pb: 10 }}>
-      <Typography color="textPrimary" variant="h3" sx={{ mb: "55px" }}>
+      <Typography
+        color="textPrimary"
+        variant="h3"
+        sx={{ mb: "55px", fontWeight: "550" }}
+      >
         Added Events
       </Typography>
 
       <Box
         sx={{
           overflow: "hidden",
-          height: "calc(100vh - 305px)",
+          height: "calc(100vh - 330px)",
         }}
       >
         <Draggable
@@ -67,11 +71,16 @@ const AddedEvents: React.FC<AddedEventsProps> = ({
                     px: 2,
                     py: 1,
                     height: "75px",
+                    boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >
                   <Box sx={{ display: "flex", gap: 5 }}>
                     <Box>
-                      <Typography color="textPrimary" variant="body2">
+                      <Typography
+                        color="textPrimary"
+                        variant="body2"
+                        sx={{ fontWeight: "550" }}
+                      >
                         {format(new Date(addedEvent.date), "dd. MMM")}
                       </Typography>
                       <Typography color="textPrimary" variant="body1">
@@ -80,7 +89,11 @@ const AddedEvents: React.FC<AddedEventsProps> = ({
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography color="textPrimary" variant="body2">
+                      <Typography
+                        color="textPrimary"
+                        variant="body2"
+                        sx={{ fontWeight: "550" }}
+                      >
                         {addedEvent.eventName}
                       </Typography>
                       <Typography color="textPrimary" variant="body1">

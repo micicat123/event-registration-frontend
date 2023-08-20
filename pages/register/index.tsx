@@ -127,7 +127,11 @@ export default function Register() {
           <Typography color="primary" variant="h2">
             Hello!
           </Typography>
-          <Typography color="textPrimary" variant="h5">
+          <Typography
+            color="textPrimary"
+            variant="h6"
+            sx={{ fontSize: "20px", lineHeight: "30px" }}
+          >
             Get started with your free account today.
           </Typography>
 

@@ -23,7 +23,11 @@ export default function RecentEvents() {
 
   return (
     <Box sx={{ flex: 1 }}>
-      <Typography color="textPrimary" variant="h3" sx={{ mb: "26px" }}>
+      <Typography
+        color="textPrimary"
+        variant="h3"
+        sx={{ mb: "26px", fontWeight: "550" }}
+      >
         Recent Events
       </Typography>
       <Box
@@ -58,10 +62,15 @@ export default function RecentEvents() {
                     px: 2,
                     py: 1,
                     height: "75px",
+                    boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >
                   <Box>
-                    <Typography color="textPrimary" variant="body2">
+                    <Typography
+                      color="textPrimary"
+                      variant="body2"
+                      sx={{ fontWeight: "550" }}
+                    >
                       {format(new Date(registration.eventData.date), "dd. MMM")}
                     </Typography>
                     <Typography color="textPrimary" variant="body1">
@@ -70,7 +79,11 @@ export default function RecentEvents() {
                     </Typography>
                   </Box>
                   <Box>
-                    <Typography color="textPrimary" variant="body2">
+                    <Typography
+                      color="textPrimary"
+                      variant="body2"
+                      sx={{ fontWeight: "550" }}
+                    >
                       {registration.eventData.eventName}
                     </Typography>
                     <Typography color="textPrimary" variant="body1">

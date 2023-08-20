@@ -72,8 +72,8 @@ export default function Login() {
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h5"
-            sx={{ pt: "8px", pb: "35px" }}
+            variant="h6"
+            sx={{ pt: "8px", pb: "35px", fontSize: "20px", lineHeight: "30px" }}
           >
             We are glad that you are back.
           </Typography>
@@ -164,7 +164,7 @@ export default function Login() {
                 </Typography>
                 <Typography variant="body1" color={"primary"}>
                   <Link
-                    href={"/login"}
+                    href={"/register"}
                     underline="none"
                     sx={{ fontWeight: 500 }}
                   >

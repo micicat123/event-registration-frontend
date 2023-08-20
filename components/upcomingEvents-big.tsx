@@ -18,7 +18,7 @@ export default function UpcomingEventsBig() {
 
   const handleLoadMore = async () => {
     const fetchedEvents = await getEventsStore.getUpcomingEvents(lastDate);
-    if (fetchedEvents.length) {
+    if (fetchedEvents !== null) {
       const lastEvent = fetchedEvents[fetchedEvents.length - 1];
       const { date } = lastEvent;
       setLastDate(date);
@@ -38,13 +38,13 @@ export default function UpcomingEventsBig() {
   return (
     <>
       <Box sx={{ mt: 22, mb: 8 }}>
-        <Typography color="textPrimary" variant="h2">
+        <Typography color="textPrimary" variant="h2" sx={{ fontWeight: "550" }}>
           Events
         </Typography>
         <Typography
           color="textPrimary"
           variant="h3"
-          sx={{ mt: "32px", mb: "37px" }}
+          sx={{ mt: "32px", mb: "37px", fontWeight: "550" }}
         >
           All Upcoming Events
         </Typography>
@@ -66,7 +66,11 @@ export default function UpcomingEventsBig() {
                 sx={{ display: "flex", flexDirection: "row", gap: 10, pl: 4 }}
               >
                 <Box>
-                  <Typography color="textPrimary" variant="body2">
+                  <Typography
+                    color="textPrimary"
+                    variant="body2"
+                    sx={{ fontWeight: "550" }}
+                  >
                     {format(new Date(event.date), "dd. MMM")}
                   </Typography>
                   <Typography color="textPrimary" variant="body1">
@@ -74,7 +78,11 @@ export default function UpcomingEventsBig() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography color="textPrimary" variant="body2">
+                  <Typography
+                    color="textPrimary"
+                    variant="body2"
+                    sx={{ fontWeight: "550" }}
+                  >
                     {event.eventName}
                   </Typography>
                   <Typography color="textPrimary" variant="body1">

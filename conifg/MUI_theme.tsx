@@ -50,7 +50,7 @@ const MUITheme = createTheme({
       lineHeight: "30px",
     },
     h6: {
-      fontWeight: 500,
+      fontWeight: 550,
       fontSize: "16px",
       lineHeight: "24px",
       letterSpacing: "-2%",

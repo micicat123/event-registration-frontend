@@ -40,13 +40,6 @@ const getEventPicture = async (id: string) => {
 };
 
 const getUpcomingEvents = async (lastDate: string) => {
-  const token = Cookies.get("jwt");
-  if (token) {
-    const { data } = await axios.get(`/event/${lastDate}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return data;
-  } else {
-    return null;
-  }
+  const { data } = await axios.get(`/event/${lastDate}`);
+  return data;
 };

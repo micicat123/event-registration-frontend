@@ -16,7 +16,7 @@ export default function ManageEventPage(props: any) {
     <Layout>
       <Box sx={{ backgroundColor: MUITheme.palette.secondary.main }}>
         <Nav />
-        <Box sx={{ display: "flex", gap: 5, px: 10 }}>
+        <Box sx={{ display: "flex", gap: 5, px: 10, pt: 8 }}>
           <AddManageEvent
             managedEvent={managedEvent}
             setManagedEvent={setManagedEvent}

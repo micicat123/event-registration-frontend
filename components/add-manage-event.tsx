@@ -125,11 +125,19 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
   return (
     <Box sx={{ pt: 10, flex: 1 }}>
       {managedEvent === "" ? (
-        <Typography color="textPrimary" variant="h3" sx={{ mb: "33px" }}>
+        <Typography
+          color="textPrimary"
+          variant="h3"
+          sx={{ mb: "33px", fontWeight: "550" }}
+        >
           Add event
         </Typography>
       ) : (
-        <Typography color="textPrimary" variant="h3" sx={{ mb: "33px" }}>
+        <Typography
+          color="textPrimary"
+          variant="h3"
+          sx={{ mb: "33px", fontWeight: "550" }}
+        >
           Manage event
         </Typography>
       )}
@@ -139,7 +147,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
           <Typography
             color="textPrimary"
             variant="body2"
-            sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+            sx={{
+              fontSize: "12px",
+              lineHeight: "16px",
+              mb: "8px",
+              fontWeight: "550",
+            }}
           >
             Event name
           </Typography>
@@ -152,6 +165,9 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
             sx={{
               width: "100%",
             }}
+            InputProps={{
+              style: { fontWeight: "bold" },
+            }}
             required
           />
         </FormControl>
@@ -161,7 +177,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
           <Typography
             color="textPrimary"
             variant="body2"
-            sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+            sx={{
+              fontSize: "12px",
+              lineHeight: "16px",
+              mb: "8px",
+              fontWeight: "550",
+            }}
           >
             Location
           </Typography>
@@ -184,7 +205,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
             <Typography
               color="textPrimary"
               variant="body2"
-              sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+              sx={{
+                fontSize: "12px",
+                lineHeight: "16px",
+                mb: "8px",
+                fontWeight: "550",
+              }}
             >
               Date
             </Typography>
@@ -236,7 +262,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
             <Typography
               color="textPrimary"
               variant="body2"
-              sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+              sx={{
+                fontSize: "12px",
+                lineHeight: "16px",
+                mb: "8px",
+                fontWeight: "550",
+              }}
             >
               Hour
             </Typography>
@@ -288,7 +319,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
             <Typography
               color="textPrimary"
               variant="body2"
-              sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+              sx={{
+                fontSize: "12px",
+                lineHeight: "16px",
+                mb: "8px",
+                fontWeight: "550",
+              }}
             >
               Max. users
             </Typography>
@@ -308,7 +344,12 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
           <Typography
             color="textPrimary"
             variant="body2"
-            sx={{ fontSize: "12px", lineHeight: "16px", mb: "8px" }}
+            sx={{
+              fontSize: "12px",
+              lineHeight: "16px",
+              mb: "8px",
+              fontWeight: "550",
+            }}
           >
             Description
           </Typography>

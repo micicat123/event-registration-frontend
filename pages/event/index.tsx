@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import { useRouter } from "next/router";
@@ -107,14 +107,14 @@ export default function EventPage(props: any) {
               <Typography
                 color="textPrimary"
                 variant="body1"
-                sx={{ fontWeight: "500" }}
+                sx={{ fontWeight: "550" }}
               >
                 {format(new Date(event.date), "d.M.yyyy")}
               </Typography>
               <Typography
                 color="textPrimary"
                 variant="body1"
-                sx={{ fontWeight: "500" }}
+                sx={{ fontWeight: "550" }}
               >
                 {event.hour}
               </Typography>
@@ -134,7 +134,7 @@ export default function EventPage(props: any) {
                 <Typography
                   color="textPrimary"
                   variant="body1"
-                  sx={{ fontWeight: "500" }}
+                  sx={{ fontWeight: "550" }}
                 >
                   {event.location}
                 </Typography>
@@ -144,7 +144,7 @@ export default function EventPage(props: any) {
                 <Typography
                   color="textPrimary"
                   variant="body1"
-                  sx={{ fontWeight: "500" }}
+                  sx={{ fontWeight: "550" }}
                 >
                   {event.maxUsers}
                 </Typography>
@@ -203,18 +203,20 @@ export default function EventPage(props: any) {
             ) : (
               <>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <CustomButton
-                    variant="contained"
-                    sx={{
-                      borderRadius: "16px",
-                      height: "40px",
-                      width: "137px",
-                      mt: "46px",
-                      mb: "16px",
-                    }}
-                  >
-                    Login
-                  </CustomButton>
+                  <Link href="/login">
+                    <CustomButton
+                      variant="contained"
+                      sx={{
+                        borderRadius: "16px",
+                        height: "40px",
+                        width: "137px",
+                        mt: "46px",
+                        mb: "16px",
+                      }}
+                    >
+                      Login
+                    </CustomButton>
+                  </Link>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <Typography

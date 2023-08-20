@@ -43,7 +43,11 @@ export default function UpcomingEventsSmall() {
 
   return (
     <Box sx={{ flex: 1 }}>
-      <Typography color="textPrimary" variant="h3" sx={{ mb: "26px" }}>
+      <Typography
+        color="textPrimary"
+        variant="h3"
+        sx={{ mb: "26px", fontWeight: "550" }}
+      >
         All Upcoming Events
       </Typography>
       <Box
@@ -78,11 +82,16 @@ export default function UpcomingEventsSmall() {
                     px: 2,
                     py: 1,
                     height: "83px",
+                    boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >
                   <Box sx={{ display: "flex", gap: 15 }}>
                     <Box>
-                      <Typography color="textPrimary" variant="body2">
+                      <Typography
+                        color="textPrimary"
+                        variant="body2"
+                        sx={{ fontWeight: "550" }}
+                      >
                         {format(
                           new Date(registration.eventData.date),
                           "dd. MMM"
@@ -94,7 +103,11 @@ export default function UpcomingEventsSmall() {
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography color="textPrimary" variant="body2">
+                      <Typography
+                        color="textPrimary"
+                        variant="body2"
+                        sx={{ fontWeight: "550" }}
+                      >
                         {registration.eventData.eventName}
                       </Typography>
                       <Typography color="textPrimary" variant="body1">
