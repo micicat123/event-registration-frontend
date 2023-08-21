@@ -2,7 +2,6 @@ import React, { SyntheticEvent, useState } from "react";
 import Layout from "../../components/layout";
 import {
   Box,
-  Button,
   FormControl,
   FormHelperText,
   IconButton,
@@ -61,10 +60,9 @@ export default function Login() {
             flexDirection: "column",
             justifyContent: "center",
             maxWidth: "488px",
-            ml: "auto",
-            mr: "auto",
             pt: "12rem",
             pb: "10em",
+            mx: { xs: 4, sm: "auto" },
           }}
         >
           <Typography color="primary" variant="h2">

@@ -3,7 +3,6 @@ import Layout from "../../components/layout";
 import {
   Avatar,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,7 +13,6 @@ import {
   IconButton,
   InputAdornment,
   Link,
-  TextField,
   Typography,
 } from "@mui/material";
 import MUITheme from "../../conifg/MUI_theme";
@@ -120,8 +118,7 @@ export default function Register() {
             justifyContent: "center",
             maxWidth: "488px",
             pt: "8.5rem",
-            ml: "auto",
-            mr: "auto",
+            mx: { xs: 4, sm: "auto" },
           }}
         >
           <Typography color="primary" variant="h2">
