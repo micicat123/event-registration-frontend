@@ -51,6 +51,7 @@ export default function Searchbar() {
           zIndex: 1,
           position: "relative",
           overflow: "hidden",
+          boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
         }}
       >
         <Box

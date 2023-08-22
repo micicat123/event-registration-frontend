@@ -57,13 +57,19 @@ export default function UpcomingEventsBig() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: "75px",
                 borderRadius: "16px",
                 mb: 2,
+                py: 2,
+                px: { xs: 0.5, sm: 1, md: 2 },
               }}
             >
               <Box
-                sx={{ display: "flex", flexDirection: "row", gap: 10, pl: 4 }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: { xs: 2, sm: 5, md: 10 },
+                  pl: 4,
+                }}
               >
                 <Box>
                   <Typography
@@ -96,7 +102,7 @@ export default function UpcomingEventsBig() {
                   sx={{
                     borderRadius: "16px",
                     height: "46px",
-                    width: "180px",
+                    width: { xs: "79px", sm: "120px", md: "180px" },
                     mr: 2,
                   }}
                   onClick={() => openEventPage(event)}

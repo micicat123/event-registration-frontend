@@ -23,7 +23,7 @@ export default function Search(props: any) {
         component="img"
         sx={{
           width: "100%",
-          height: "100%",
+          height: "auto",
           position: "absolute",
           zIndex: -1,
         }}
@@ -31,7 +31,7 @@ export default function Search(props: any) {
         draggable={false}
       />
       <Nav />
-      <Box sx={{ px: 10, pt: 20 }}>
+      <Box sx={{ px: { xs: 3, sm: 6, md: 10 }, pt: 20 }}>
         <Typography color="textPrimary" variant="h6">
           SEARCH FOR EVENTS
         </Typography>
