@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Hidden, TextField } from "@mui/material";
 import React, { useState } from "react";
 import {
   CustomButton,
@@ -38,89 +38,136 @@ export default function Searchbar() {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        height: "44px",
-        backgroundColor: "white",
-        borderRadius: "16px",
-        width: "105%",
-        justifyContent: "space-between",
-        alignItems: "center",
-        zIndex: 1,
-        position: "relative",
-      }}
-    >
-      <FlexBox gap={14.5}>
-        <FlexBox>
-          <LocationOnIcon color="primary" sx={{ ml: 5, mr: 3 }} />
-
-          <CustomTextInput
-            placeholder="Search by location"
-            variant="standard"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setLocation(e.target.value);
-            }}
-          />
-        </FlexBox>
-        <hr style={{ height: "42px", opacity: "50%" }} />
-        <Box sx={{ pl: 4 }}>
-          <DatePicker
-            defaultValue={dayjs().set("month", 0).set("date", 1)}
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "16px",
-              "& .MuiInputAdornment-positionEnd": {
-                marginRight: "7px",
-              },
-              "& .MuiInput-underline:before": {
-                borderBottomWidth: "0px",
-                mr: 11,
-                ml: 7,
-              },
-              "& .MuiInput-underline:after": {
-                borderBottomWidth: "0px",
-              },
-            }}
-            slotProps={{
-              inputAdornment: { position: "start" },
-              textField: {
-                size: "small",
-                variant: "standard",
-                helperText: "",
-              },
-            }}
-            slots={{
-              openPickerIcon: () => (
-                <DateRangeIcon
-                  sx={{ color: MUITheme.palette.primary.main, mr: "32px" }}
-                />
-              ),
-            }}
-            onChange={(newValue: any) => {
-              let month;
-              if (newValue.$M + 1 < 10) month = "0" + (newValue.$M + 1);
-              else month = newValue.$M + 1;
-
-              let day;
-              if (newValue.$D < 10) day = "0" + newValue.$D;
-              else day = newValue.$D;
-              setDate(newValue.$y + "-" + month + "-" + day);
-            }}
-          />
-        </Box>
-      </FlexBox>
-      <CustomButton
-        variant="contained"
+    <>
+      <Box
         sx={{
-          borderRadius: "14px",
-          height: "100%",
-          width: "228px",
+          display: "flex",
+          height: { xs: "106px", sm: "106px", md: "106px", lg: "44px" },
+          backgroundColor: "white",
+          borderRadius: { xs: "32px", sm: "32px", md: "32px", lg: "16px" },
+          width: "100%",
+          justifyContent: "space-between",
+          alignItems: "center",
+          zIndex: 1,
+          position: "relative",
+          overflow: "hidden",
         }}
-        onClick={search}
       >
-        Search
-      </CustomButton>
-    </Box>
+        <Box
+          sx={{
+            gap: { md: 0, lg: 15 },
+            mt: { xs: -5, sm: -5, md: -5, lg: 0 },
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <FlexBox>
+            <LocationOnIcon
+              color="primary"
+              sx={{ ml: 5, mr: { md: 0, lg: 3 } }}
+            />
+
+            <CustomTextInput
+              placeholder="Search by location"
+              variant="standard"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setLocation(e.target.value);
+              }}
+            />
+          </FlexBox>
+          <Hidden lgDown>
+            <hr style={{ height: "42px", opacity: "50%" }} />
+          </Hidden>
+          <Box sx={{ pl: { md: 2.25, lg: 4 }, justifySelf: "flex-end" }}>
+            <DatePicker
+              defaultValue={dayjs().set("month", 0).set("date", 1)}
+              sx={{
+                backgroundColor: "white",
+                borderRadius: "16px",
+                "& .MuiInputAdornment-positionEnd": {
+                  marginRight: "7px",
+                },
+                "& .MuiInput-underline:before": {
+                  borderBottomWidth: "0px",
+                  mr: 200,
+                  ml: 200,
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottomWidth: "0px",
+                },
+                "& .MuiInputBase-input": {
+                  pb: 0,
+                },
+              }}
+              slotProps={{
+                inputAdornment: { position: "start" },
+                textField: {
+                  size: "small",
+                  variant: "standard",
+                  helperText: "",
+                },
+              }}
+              slots={{
+                openPickerIcon: () => (
+                  <DateRangeIcon
+                    sx={{
+                      color: MUITheme.palette.primary.main,
+                      mr: { md: 0, lg: 3 },
+                    }}
+                  />
+                ),
+              }}
+              onChange={(newValue: any) => {
+                let month;
+                if (newValue.$M + 1 < 10) month = "0" + (newValue.$M + 1);
+                else month = newValue.$M + 1;
+
+                let day;
+                if (newValue.$D < 10) day = "0" + newValue.$D;
+                else day = newValue.$D;
+                setDate(newValue.$y + "-" + month + "-" + day);
+              }}
+            />
+          </Box>
+        </Box>
+        <Hidden lgDown>
+          <CustomButton
+            variant="contained"
+            sx={{
+              borderRadius: "14px",
+              height: "100%",
+              width: "228px",
+            }}
+            onClick={search}
+          >
+            Search
+          </CustomButton>
+        </Hidden>
+      </Box>
+      <Hidden lgUp>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: { xs: -5, sm: -5, md: -5 },
+          }}
+        >
+          <CustomButton
+            variant="contained"
+            sx={{
+              borderRadius: "32px",
+              height: "40px",
+              width: "100%",
+              zIndex: 99,
+            }}
+            onClick={search}
+          >
+            Search
+          </CustomButton>
+        </Box>
+      </Hidden>
+    </>
   );
 }

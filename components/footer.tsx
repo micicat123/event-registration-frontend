@@ -38,7 +38,7 @@ export default function Footer() {
         </Box>
       </Hidden>
 
-      <Typography color="primary" variant="body1">
+      <Typography color="primary" variant="body1" ml={10}>
         All Rights Reserved | skillupmentor.com
       </Typography>
     </Box>
