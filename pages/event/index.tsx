@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Hidden, Link, Typography } from "@mui/material";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import { useRouter } from "next/router";
@@ -64,28 +64,46 @@ export default function EventPage(props: any) {
     setIsRegistered(false);
   };
 
-  //console.log(image);
   if (!event) {
     return <></>;
   }
   return (
     <Layout>
-      <Box
-        component="img"
-        sx={{
-          maxWidth: "50%",
-          borderTopLeftRadius: "8px",
-          position: "fixed",
-          bottom: 0,
-          right: 0,
-          transition: "opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-          "&:hover": {
-            opacity: 0.9,
-            boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
-          },
-        }}
-        src={image}
-      />
+      <Hidden mdDown>
+        <Box
+          component="img"
+          sx={{
+            maxWidth: "50%",
+            borderTopLeftRadius: "8px",
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+            transition:
+              "opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+            "&:hover": {
+              opacity: 0.9,
+              boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+          src={image}
+        />
+      </Hidden>
+      <Hidden mdUp>
+        <Nav />
+        <Box
+          component="img"
+          sx={{
+            width: "100%",
+            transition:
+              "opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+            "&:hover": {
+              opacity: 0.9,
+              boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+          src={image}
+        />
+      </Hidden>
 
       <Box
         sx={{
@@ -93,16 +111,22 @@ export default function EventPage(props: any) {
           justifyContent: "space-between",
         }}
       >
-        <Nav />
+        <Hidden mdDown>
+          <Nav />
+        </Hidden>
+
         <Box
           sx={{
-            width: "81.5%",
-            backgroundColor: MUITheme.palette.secondary.main,
-            pt: 20,
-            px: 10,
+            width: { sm: "100%", md: "81.5%" },
+            backgroundColor: {
+              sm: "#FFFFFF",
+              md: MUITheme.palette.secondary.main,
+            },
+            pt: { sm: 0, md: 20 },
+            px: { xs: 2, sm: 10 },
           }}
         >
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ width: { sm: "100%", md: "50%" } }}>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Typography
                 color="textPrimary"
@@ -231,15 +255,16 @@ export default function EventPage(props: any) {
             )}
           </Box>
         </Box>
-
-        <Box
-          width="18.5%"
-          sx={{
-            backgroundImage: `url("pictures/background-logo.png")`,
-          }}
-        />
+        <Hidden mdDown>
+          <Box
+            width="18.5%"
+            sx={{
+              backgroundImage: `url("pictures/background-logo.png")`,
+            }}
+          />
+        </Hidden>
       </Box>
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: { sm: "100%", md: "50%" } }}>
         <Footer />
       </Box>
     </Layout>
