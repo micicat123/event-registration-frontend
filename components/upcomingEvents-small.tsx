@@ -7,20 +7,29 @@ import CloseIcon from "@mui/icons-material/Close";
 import { UpdateRegistrationsStore } from "../api/updateRegistrations";
 import Draggable from "react-draggable";
 import BookButton from "./bookButton";
+import { useRouter } from "next/router";
 
 export default function UpcomingEventsSmall() {
   const [registrations, setRegistrations] = useState<any[]>([]);
   const [unregisteredEvents, setUnregisteredEvents] = useState<any[]>([]);
   const [buttonIsHovered, setButtonIsHovered] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const registrationStore = new UpdateRegistrationsStore();
   const [boundValue, setBoundValue] = useState<number>(0);
+  const router: any = useRouter();
 
   useEffect(() => {
     (async () => {
       const userStore = new GetUserStore();
       const fetchedRegistrations = await userStore.getUserRegistrations();
+      console.log(fetchedRegistrations);
       setRegistrations(fetchedRegistrations);
-      setBoundValue((fetchedRegistrations.length - 3) * 110);
+      try {
+        setBoundValue((fetchedRegistrations.length - 3) * 110);
+        setIsLoggedIn(true);
+      } catch (e) {
+        router.push("/");
+      }
     })();
   }, []);
 
@@ -41,8 +50,12 @@ export default function UpcomingEventsSmall() {
     setUnregisteredEvents(updatedUnregisteredEvents);
   };
 
+  if (!isLoggedIn) {
+    return <></>;
+  }
+
   return (
-    <Box sx={{ flex: 1 }}>
+    <Box sx={{ flex: 1, mt: { xs: 10, sm: 10, md: 0 } }}>
       <Typography
         color="textPrimary"
         variant="h3"
@@ -79,13 +92,12 @@ export default function UpcomingEventsSmall() {
                     alignItems: "center",
                     backgroundColor: "white",
                     borderRadius: "16px",
-                    px: 2,
-                    py: 1,
-                    height: "83px",
+                    px: { xs: 0.5, sm: 1, md: 2 },
+                    py: 2,
                     boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >
-                  <Box sx={{ display: "flex", gap: 15 }}>
+                  <Box sx={{ display: "flex", gap: { xs: 2, sm: 7, md: 15 } }}>
                     <Box>
                       <Typography
                         color="textPrimary"

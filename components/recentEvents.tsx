@@ -3,21 +3,29 @@ import { useEffect, useState } from "react";
 import { GetUserStore } from "../api/getUser";
 import { format, parseISO } from "date-fns";
 import Draggable from "react-draggable";
+import { useRouter } from "next/router";
 
 export default function RecentEvents() {
   const [registrations, setRegistrations] = useState<any[]>([]);
   const [boundValue, setBoundValue] = useState<number>(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router: any = useRouter();
 
   useEffect(() => {
     (async () => {
       const userStore = new GetUserStore();
       const fetchedRegistrations = await userStore.getUserPastRegistrations();
       setRegistrations(fetchedRegistrations);
-      setBoundValue((fetchedRegistrations.length - 3) * 110);
+      try {
+        setBoundValue((fetchedRegistrations.length - 3) * 110);
+        setIsLoggedIn(true);
+      } catch (e) {
+        router.push("/");
+      }
     })();
   }, []);
 
-  if (registrations.length < 1) {
+  if (!isLoggedIn) {
     return <></>;
   }
 
@@ -26,7 +34,7 @@ export default function RecentEvents() {
       <Typography
         color="textPrimary"
         variant="h3"
-        sx={{ mb: "26px", fontWeight: "550" }}
+        sx={{ mb: "26px", fontWeight: "550", mt: { xs: 5, sm: 5, md: 0 } }}
       >
         Recent Events
       </Typography>
@@ -58,10 +66,9 @@ export default function RecentEvents() {
                     alignItems: "center",
                     backgroundColor: "white",
                     borderRadius: "16px",
-                    gap: 15,
-                    px: 2,
-                    py: 1,
-                    height: "75px",
+                    gap: { xs: 2, sm: 7, md: 15 },
+                    px: { xs: 0.5, sm: 1, md: 2 },
+                    py: 2,
                     boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >

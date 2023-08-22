@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Hidden, Typography } from "@mui/material";
 import Layout from "../../components/layout";
 import MUITheme from "../../conifg/MUI_theme";
 import Nav from "../../components/nav";
@@ -27,7 +27,15 @@ export default function Profile() {
 
   return (
     <Layout>
-      <Box>
+      <Box
+        sx={{
+          backgroundColor: {
+            xs: MUITheme.palette.secondary.main,
+            sm: MUITheme.palette.secondary.main,
+            md: "unset",
+          },
+        }}
+      >
         <Nav />
         <Box
           sx={{
@@ -37,30 +45,30 @@ export default function Profile() {
             zIndex: -2,
           }}
         />
-        <Box
-          sx={{
-            backgroundImage: `url("pictures/background-logo.png")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "calc(100vh - 491px)",
-          }}
-        />
-        <Box
-          sx={{ position: "absolute", left: 50, right: 50, top: 175, px: 4 }}
-        >
+        <Hidden mdDown>
+          <Box
+            sx={{
+              backgroundImage: `url("pictures/background-logo.png")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "100%",
+              height: "calc(100vh - 491px)",
+            }}
+          />
+        </Hidden>
+        <Box sx={{ px: 4, mt: { xs: -40, sm: -40, md: -75 }, pb: 10 }}>
           <Typography
             color="primary"
             variant="h1"
             sx={{
               lineHeight: "64px",
               textAlign: "center",
-              mb: "54px",
+              mb: { sm: 0, md: "54px" },
             }}
           >
             {userDisplayName}
           </Typography>
-          <Box sx={{ display: "flex", gap: 3 }}>
+          <Box sx={{ display: { sm: "unset", md: "flex" }, gap: 3 }}>
             <UpcomingEventsSmall />
             <RecentEvents />
           </Box>
