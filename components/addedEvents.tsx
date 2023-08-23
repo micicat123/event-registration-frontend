@@ -68,13 +68,12 @@ const AddedEvents: React.FC<AddedEventsProps> = ({
                     alignItems: "center",
                     backgroundColor: "white",
                     borderRadius: "16px",
-                    px: 2,
-                    py: 1,
-                    height: "75px",
+                    px: { xs: 0.5, sm: 1, md: 2 },
+                    py: 2,
                     boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.15)",
                   }}
                 >
-                  <Box sx={{ display: "flex", gap: 5 }}>
+                  <Box sx={{ display: "flex", gap: { xs: 1, sm: 5 } }}>
                     <Box>
                       <Typography
                         color="textPrimary"

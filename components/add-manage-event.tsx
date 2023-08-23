@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Typography } from "@mui/material";
+import { Box, Button, FormControl, Hidden, Typography } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { CustomButton, CustomTextInput } from "../conifg/MUI_styled_components";
 import MUITheme from "../conifg/MUI_theme";
@@ -200,7 +200,7 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
         </FormControl>
         <br />
 
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: { xs: "relative", sm: "flex" }, gap: 2 }}>
           <FormControl sx={{ display: "block" }}>
             <Typography
               color="textPrimary"
@@ -218,6 +218,7 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
               value={date}
               format="DD.MM.YYYY"
               sx={{
+                width: { xs: "97%", sm: "unset" },
                 backgroundColor: "white",
                 borderRadius: "16px",
                 pt: 0.5,
@@ -250,14 +251,20 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
               slots={{
                 openPickerIcon: () => (
                   <DateRangeIcon
-                    sx={{ color: MUITheme.palette.primary.main, pb: 1 }}
+                    sx={{
+                      color: MUITheme.palette.primary.main,
+                      pb: 1,
+                      pr: { xs: 1.75, sm: "unset" },
+                    }}
                   />
                 ),
               }}
               onChange={(newValue) => setDate(newValue)}
             />
           </FormControl>
-
+          <Hidden smUp>
+            <br />
+          </Hidden>
           <FormControl sx={{ display: "block" }}>
             <Typography
               color="textPrimary"
@@ -276,6 +283,7 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
               onChange={(newValue) => setHour(newValue)}
               ampm={false}
               sx={{
+                width: { xs: "97%", sm: "unset" },
                 backgroundColor: "white",
                 borderRadius: "16px",
                 pt: 0.5,
@@ -308,13 +316,19 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
               slots={{
                 openPickerIcon: () => (
                   <AccessTimeIcon
-                    sx={{ color: MUITheme.palette.primary.main, pb: 1 }}
+                    sx={{
+                      color: MUITheme.palette.primary.main,
+                      pb: 1,
+                      pr: { xs: 1.75, sm: "unset" },
+                    }}
                   />
                 ),
               }}
             />
           </FormControl>
-
+          <Hidden smUp>
+            <br />
+          </Hidden>
           <FormControl sx={{ display: "block" }}>
             <Typography
               color="textPrimary"
@@ -334,6 +348,7 @@ const AddManageEvent: React.FC<AddedEventsProps> = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setMaxUsers(e.target.value);
               }}
+              sx={{ width: { xs: "100%", sm: "unset" } }}
               required
             />
           </FormControl>
