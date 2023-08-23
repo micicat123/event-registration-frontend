@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { Poppins } from "next/font/google";
 
 const MUITheme = createTheme({
   breakpoints: {

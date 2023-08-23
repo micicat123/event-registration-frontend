@@ -4,7 +4,7 @@ import MUITheme from "../../conifg/MUI_theme";
 import Nav from "../../components/nav";
 import { useEffect, useState } from "react";
 import { GetUserStore } from "../../api/getUser";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import UpcomingEventsSmall from "../../components/upcomingEvents-small";
 import RecentEvents from "../../components/recentEvents";
 import Footer from "../../components/footer";

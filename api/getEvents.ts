@@ -1,5 +1,4 @@
 import axios from "../conifg/axios.config";
-import Cookies from "js-cookie";
 
 export class GetEventsStore {
   getSearchedEvents = (date: string, location: string) => {

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { GetUserStore } from "../../api/getUser";
+import { useState } from "react";
 import Layout from "../../components/layout";
 import { Box } from "@mui/material";
 import Nav from "../../components/nav";
